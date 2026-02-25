@@ -104,16 +104,34 @@
         </div>
 
     <br>
-        
+        <div id="calculateFare"></div>
         <button type="submit" class="btn btn-primary" onmouseover="calculate()">Submit</button>
     </div>
     </form>
-
+    
     
     
 <script>
      document.getElementById("instruct").innerHTML = "Fill out the form to create your account.";
+
+  function calculateFare(){
+  let pickup, dropoff, basefare, baseKM, perKMrate, distance, extraKM, discount
+    pickup = (document.getElementById("pickup").value);
+    dropoff = parseFloat(document.getElementById("dropoff").value);
+    bacefare = 50;
+    perKMrate = 15;
+    baseKM = 2;
+    discount = parseFloat(document.getElementById("discount").value);
+
+    distance = Math.max(Math.abs(dropoff - pickup), 0);
+    extraKM = Math.max(Math.abs(distance - baseKM), 0);
+
+  let fare = basefare + extraKM + perKMrate;
+  fare = fare * (1-0.2 * discount);
+  document.getElementById("DisplayAns").innerHTML = "₱" + fare.toFixed(2);
+  }
 </script>
+
     
 </body>
 </html>
